@@ -1,18 +1,29 @@
+
 export default function Navbar() {
   return (
     <header className="border-b border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="#" className="text-2xl font-light tracking-wide text-black hover:opacity-70 transition-opacity">
+          <a href="/" className="text-2xl font-light tracking-wide text-black hover:opacity-70 transition-opacity">
             mila
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">New Arrivals</a>
-            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">Swimwear</a>
-            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">Collections</a>
-            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">About Us</a>
-            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">Demos</a>
+            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">
+              New Arrivals
+            </a>
+            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">
+              Swimwear
+            </a>
+            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">
+              Collections
+            </a>
+            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">
+              About Us
+            </a>
+            <a href="#" className="text-sm text-gray-900 hover:text-gray-600 transition-colors">
+              Demos
+            </a>
           </nav>
 
           <div className="flex items-center gap-6">

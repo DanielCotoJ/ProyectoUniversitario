@@ -1,7 +1,7 @@
-import './App.css'
 import Navbar from './components/common/Navbar.jsx'
 import Footer from './components/common/Footer.jsx'
 import Home from './modules/store/Home.jsx'
+
 
 function App() {
   return (
