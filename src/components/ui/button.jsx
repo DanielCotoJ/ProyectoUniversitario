@@ -4,7 +4,7 @@ export function Button({ variant = 'default', size = 'md', className = '', ...pr
   const base =
     'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
   const variants = {
-    default: 'bg-black text-white hover:bg-gray-900',
+    default: 'bg-brand-dark text-white hover:bg-brand',
     outline: 'border border-gray-300 bg-white text-gray-900 hover:bg-gray-50',
     ghost: 'bg-transparent text-gray-900 hover:bg-gray-100',
   }
