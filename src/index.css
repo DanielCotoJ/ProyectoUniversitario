@@ -1,3 +1,9 @@
+/* Brand color variables from brandbook */
+:root {
+    --color-brand: #8984D6;
+    --color-brand-dark: #6B5CA7;
+    --color-brand-light: #D9D9E8;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

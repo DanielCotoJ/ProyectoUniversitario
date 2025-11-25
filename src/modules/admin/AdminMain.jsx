@@ -95,11 +95,11 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-[#e5e5e5]">
+      <header className="bg-white border-b border-slate-200">
         <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-[#1a1a1a]">mila</h1>
+          <h1 className="text-xl font-semibold text-brand-dark">mila</h1>
           <div className="flex items-center gap-6">
-            <span className="text-sm text-[#6b6b6b]">Administrador</span>
+            <span className="text-sm text-slate-500">Administrador</span>
             <Button variant="outline" size="sm" className="text-sm bg-transparent">
               Cerrar sesión
             </Button>
@@ -109,8 +109,8 @@ export default function AdminDashboard() {
 
       <div className="max-w-[1400px] mx-auto px-6 py-8">
         <div className="mb-12 text-center">
-          <h1 className="text-5xl font-light text-[#1a1a1a] tracking-tight mb-4">Panel administrativo</h1>
-          <h2 className="text-lg text-[#6b6b6b] font-light leading-relaxed max-w-2xl mx-auto">
+          <h1 className="text-5xl font-light text-brand-dark tracking-tight mb-4">Panel administrativo</h1>
+          <h2 className="text-lg text-slate-500 font-light leading-relaxed max-w-2xl mx-auto">
             Gestiona usuarios, productos, ventas y pagos desde un solo lugar. Monitorea el rendimiento de tu negocio en
             tiempo real.
           </h2>
@@ -123,32 +123,32 @@ export default function AdminDashboard() {
             <nav className="space-y-3">
               <button
                 onClick={() => setActiveTab("users")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-[#e5e5e5] transition-colors ${
-                  activeTab === "users" ? "bg-[#1a1a1a] text-white" : "bg-white text-[#1a1a1a] hover:bg-gray-100"
+                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
+                  activeTab === "users" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
                 }`}
               >
                 Gestión de Usuarios
               </button>
               <button
                 onClick={() => setActiveTab("products")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-[#e5e5e5] transition-colors ${
-                  activeTab === "products" ? "bg-[#1a1a1a] text-white" : "bg-white text-[#1a1a1a] hover:bg-gray-100"
+                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
+                  activeTab === "products" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
                 }`}
               >
                 Gestión de Productos
               </button>
               <button
                 onClick={() => setActiveTab("sales")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-[#e5e5e5] transition-colors ${
-                  activeTab === "sales" ? "bg-[#1a1a1a] text-white" : "bg-white text-[#1a1a1a] hover:bg-gray-100"
+                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
+                  activeTab === "sales" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
                 }`}
               >
                 Ventas y Facturación
               </button>
               <button
                 onClick={() => setActiveTab("payments")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-[#e5e5e5] transition-colors ${
-                  activeTab === "payments" ? "bg-[#1a1a1a] text-white" : "bg-white text-[#1a1a1a] hover:bg-gray-100"
+                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
+                  activeTab === "payments" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
                 }`}
               >
                 Monitoreo de Pagos
@@ -156,20 +156,20 @@ export default function AdminDashboard() {
             </nav>
 
             {/* Stats Card */}
-            <div className="mt-6 bg-white rounded-lg p-6 border border-[#e5e5e5]">
-              <h3 className="text-sm font-medium text-[#1a1a1a] mb-4">Resumen</h3>
+            <div className="mt-6 bg-white rounded-lg p-6 border border-slate-200">
+              <h3 className="text-sm font-medium text-brand-dark mb-4">Resumen</h3>
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#6b6b6b]">Usuarios</span>
-                  <span className="font-medium text-[#1a1a1a]">{users.length}</span>
+                  <span className="text-slate-500">Usuarios</span>
+                  <span className="font-medium text-brand-dark">{users.length}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#6b6b6b]">Productos</span>
-                  <span className="font-medium text-[#1a1a1a]">{products.length}</span>
+                  <span className="text-slate-500">Productos</span>
+                  <span className="font-medium text-brand-dark">{products.length}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#6b6b6b]">Ventas hoy</span>
-                  <span className="font-medium text-[#1a1a1a]">{sales.length}</span>
+                  <span className="text-slate-500">Ventas hoy</span>
+                  <span className="font-medium text-brand-dark">{sales.length}</span>
                 </div>
               </div>
             </div>
@@ -197,10 +197,10 @@ function UsersManagement({ users, setUsers }) {
   }
 
   return (
-    <div className="bg-white rounded-lg border-[#e5e5e5]">
-      <div className="px-6 py-4 border-b border-[#e5e5e5]">
-        <h2 className="text-lg font-semibold text-[#1a1a1a]">Gestión de Usuarios</h2>
-        <p className="text-sm text-[#6b6b6b] mt-1">Visualiza y gestiona la información de los usuarios registrados</p>
+    <div className="bg-white rounded-lg border border-slate-200">
+      <div className="px-6 py-4 border-b border-slate-200">
+        <h2 className="text-lg font-semibold text-brand-dark">Gestión de Usuarios</h2>
+        <p className="text-sm text-slate-500 mt-1">Visualiza y gestiona la información de los usuarios registrados</p>
       </div>
 
       <div className="p-6">
@@ -377,7 +377,7 @@ function UserEditForm({ user, onSave, onCancel }) {
         <Button type="button" variant="outline" onClick={onCancel}>
           Cancelar
         </Button>
-        <Button type="submit" className="bg-[#1a1a1a] hover:bg-[#2a2a2a]">
+        <Button type="submit" className="bg-brand-dark hover:bg-brand">
           Guardar cambios
         </Button>
       </div>
@@ -431,15 +431,15 @@ function ProductsManagement({
         </Card>
       )}
 
-      <div className="bg-white rounded-lg border border-[#e5e5e5]">
-        <div className="px-6 py-4 border-b border-[#e5e5e5] flex items-center justify-between">
+      <div className="bg-white rounded-lg border border-slate-200">
+        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-[#1a1a1a]">Gestión de Productos</h2>
-            <p className="text-sm text-[#6b6b6b] mt-1">Administra el catálogo de productos de tu tienda</p>
+            <h2 className="text-lg font-semibold text-brand-dark">Gestión de Productos</h2>
+            <p className="text-sm text-slate-500 mt-1">Administra el catálogo de productos de tu tienda</p>
           </div>
           <Dialog open={isAddingNew} onOpenChange={setIsAddingNew}>
             <DialogTrigger asChild>
-              <Button className="bg-[#1a1a1a] hover:bg-[#2a2a2a]">Registrar Nuevo Producto</Button>
+              <Button className="bg-brand-dark hover:bg-brand">Registrar Nuevo Producto</Button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
@@ -646,7 +646,7 @@ function ProductForm({
         <Button type="button" variant="outline" onClick={onCancel}>
           Cancelar
         </Button>
-        <Button type="submit" className="bg-[#1a1a1a] hover:bg-[#2a2a2a]">
+        <Button type="submit" className="bg-brand-dark hover:bg-brand">
           {isNew ? "Registrar Producto" : "Guardar cambios"}
         </Button>
       </div>
@@ -674,16 +674,16 @@ function SalesManagement({ sales }) {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-sm text-[#6b6b6b]">Productos vendidos:</span>
-              <span className="text-lg font-semibold text-[#1a1a1a]">{productsToday}</span>
+              <span className="text-sm text-slate-500">Productos vendidos:</span>
+              <span className="text-lg font-semibold text-brand-dark">{productsToday}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-[#6b6b6b]">Ingresos generados:</span>
-              <span className="text-lg font-semibold text-[#1a1a1a]">₡{totalToday.toLocaleString()}</span>
+              <span className="text-sm text-slate-500">Ingresos generados:</span>
+              <span className="text-lg font-semibold text-brand-dark">₡{totalToday.toLocaleString()}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-[#6b6b6b]">Número de ventas:</span>
-              <span className="text-lg font-semibold text-[#1a1a1a]">{todaySales.length}</span>
+              <span className="text-sm text-slate-500">Número de ventas:</span>
+              <span className="text-lg font-semibold text-brand-dark">{todaySales.length}</span>
             </div>
           </CardContent>
         </Card>
@@ -695,25 +695,25 @@ function SalesManagement({ sales }) {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-sm text-[#6b6b6b]">Productos vendidos:</span>
-              <span className="text-lg font-semibold text-[#1a1a1a]">{productsMonth}</span>
+              <span className="text-sm text-slate-500">Productos vendidos:</span>
+              <span className="text-lg font-semibold text-brand-dark">{productsMonth}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-[#6b6b6b]">Ingresos generados:</span>
-              <span className="text-lg font-semibold text-[#1a1a1a]">₡{totalMonth.toLocaleString()}</span>
+              <span className="text-sm text-slate-500">Ingresos generados:</span>
+              <span className="text-lg font-semibold text-brand-dark">₡{totalMonth.toLocaleString()}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-[#6b6b6b]">Número de ventas:</span>
-              <span className="text-lg font-semibold text-[#1a1a1a]">{sales.length}</span>
+              <span className="text-sm text-slate-500">Número de ventas:</span>
+              <span className="text-lg font-semibold text-brand-dark">{sales.length}</span>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="bg-white rounded-lg border border-[#e5e5e5]">
-        <div className="px-6 py-4 border-b border-[#e5e5e5]">
-          <h2 className="text-lg font-semibold text-[#1a1a1a]">Historial de Ventas</h2>
-          <p className="text-sm text-[#6b6b6b] mt-1">Visualiza todas las ventas y facturas generadas</p>
+      <div className="bg-white rounded-lg border border-slate-200">
+        <div className="px-6 py-4 border-b border-slate-200">
+          <h2 className="text-lg font-semibold text-brand-dark">Historial de Ventas</h2>
+          <p className="text-sm text-slate-500 mt-1">Visualiza todas las ventas y facturas generadas</p>
         </div>
 
         <div className="p-6">
@@ -795,12 +795,12 @@ function PaymentsMonitoring({ sales }) {
           <CardContent className="space-y-3">
             {Object.entries(paymentsByMethod).map(([method, count]) => (
               <div key={method} className="flex justify-between items-center">
-                <span className="text-sm text-[#6b6b6b]">{method}</span>
+                <span className="text-sm text-slate-500">{method}</span>
                 <div className="flex items-center gap-3">
                   <div className="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#1a1a1a]" style={{ width: `${(count / sales.length) * 100}%` }} />
+                    <div className="h-full bg-brand-dark" style={{ width: `${(count / sales.length) * 100}%` }} />
                   </div>
-                  <span className="text-sm font-medium text-[#1a1a1a] w-8 text-right">{count}</span>
+                  <span className="text-sm font-medium text-brand-dark w-8 text-right">{count}</span>
                 </div>
               </div>
             ))}
@@ -815,18 +815,18 @@ function PaymentsMonitoring({ sales }) {
           <CardContent className="space-y-3">
             {Object.entries(paymentsByStatus).map(([status, count]) => (
               <div key={status} className="flex justify-between">
-                <span className="text-sm text-[#6b6b6b]">{status}</span>
-                <span className="text-lg font-semibold text-[#1a1a1a]">{count}</span>
+                <span className="text-sm text-slate-500">{status}</span>
+                <span className="text-lg font-semibold text-brand-dark">{count}</span>
               </div>
             ))}
           </CardContent>
         </Card>
       </div>
 
-      <div className="bg-white rounded-lg border border-[#e5e5e5]">
-        <div className="px-6 py-4 border-b border-[#e5e5e5]">
-          <h2 className="text-lg font-semibold text-[#1a1a1a]">Monitoreo de Pagos</h2>
-          <p className="text-sm text-[#6b6b6b] mt-1">Estado detallado de todos los pagos registrados</p>
+      <div className="bg-white rounded-lg border border-slate-200">
+        <div className="px-6 py-4 border-b border-slate-200">
+          <h2 className="text-lg font-semibold text-brand-dark">Monitoreo de Pagos</h2>
+          <p className="text-sm text-slate-500 mt-1">Estado detallado de todos los pagos registrados</p>
         </div>
 
         <div className="p-6">

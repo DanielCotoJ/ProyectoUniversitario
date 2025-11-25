@@ -9,7 +9,8 @@ function App() {
     <div className="min-h-screen bg-white text-gray-900 flex flex-col">
       <Navbar />
       <main className="flex-1">
-        <AdminMain />
+        <Home />
+       {/*<AdminMain />*/}
       </main>
       <Footer />
     </div>
