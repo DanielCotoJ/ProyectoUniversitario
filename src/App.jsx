@@ -15,12 +15,14 @@ import Login from "./modules/auth/Login.jsx";
 import Register from "./modules/auth/Register.jsx";
 import Profile from "./modules/auth/Profile.jsx";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col">
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
 
       <main className="flex-1">
         <Routes>
@@ -32,7 +34,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
 
           {/* Admin */}
-          <Route path="/admin/*" element={<AdminMain />} />
+          <Route path="/admin" element={<AdminMain />} />
 
           {/* Auth */}
           <Route path="/login" element={<Login />} />

@@ -96,8 +96,14 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white border-b border-slate-200">
-        <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-brand-dark">mila</h1>
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+          <a href="/admin" className="inline-flex items-center">
+            <img
+              src="/images/bellas-boutique-logo-complete.png"
+              alt="Bellas Boutique"
+              className="h-7 md:h-8 w-auto"
+            />
+          </a>
           <div className="flex items-center gap-6">
             <span className="text-sm text-slate-500">Administrador</span>
             <Button variant="outline" size="sm" className="text-sm bg-transparent">
@@ -107,48 +113,98 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      <div className="max-w-[1400px] mx-auto px-6 py-8">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8">
         <div className="mb-12 text-center">
-          <h1 className="text-5xl font-light text-brand-dark tracking-tight mb-4">Panel administrativo</h1>
-          <h2 className="text-lg text-slate-500 font-light leading-relaxed max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-light text-brand-dark tracking-tight mb-4">Panel administrativo</h1>
+          <h2 className="text-base md:text-lg text-slate-500 font-light leading-relaxed max-w-2xl mx-auto">
             Gestiona usuarios, productos, ventas y pagos desde un solo lugar. Monitorea el rendimiento de tu negocio en
             tiempo real.
           </h2>
         </div>
         {/* </CHANGE> */}
+        <div className="md:hidden mb-6 space-y-3">
+          <button
+            onClick={() => setActiveTab("users")}
+            className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+              activeTab === "users"
+                ? "bg-brand-dark text-white border-transparent"
+                : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
+            }`}
+          >
+            Gestión de Usuarios
+          </button>
+          <button
+            onClick={() => setActiveTab("products")}
+            className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+              activeTab === "products"
+                ? "bg-brand-dark text-white border-transparent"
+                : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
+            }`}
+          >
+            Gestión de Productos
+          </button>
+          <button
+            onClick={() => setActiveTab("sales")}
+            className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+              activeTab === "sales"
+                ? "bg-brand-dark text-white border-transparent"
+                : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
+            }`}
+          >
+            Ventas y Facturación
+          </button>
+          <button
+            onClick={() => setActiveTab("payments")}
+            className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+              activeTab === "payments"
+                ? "bg-brand-dark text-white border-transparent"
+                : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
+            }`}
+          >
+            Monitoreo de Pagos
+          </button>
+        </div>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
           {/* Sidebar */}
-          <aside className="w-64 flex-shrink-0">
+          <aside className="hidden md:block md:w-64 md:flex-shrink-0">
             <nav className="space-y-3">
               <button
                 onClick={() => setActiveTab("users")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
-                  activeTab === "users" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
+                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+                  activeTab === "users"
+                    ? "bg-brand-dark text-white border-transparent"
+                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
                 }`}
               >
                 Gestión de Usuarios
               </button>
               <button
                 onClick={() => setActiveTab("products")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
-                  activeTab === "products" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
+                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+                  activeTab === "products"
+                    ? "bg-brand-dark text-white border-transparent"
+                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
                 }`}
               >
                 Gestión de Productos
               </button>
               <button
                 onClick={() => setActiveTab("sales")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
-                  activeTab === "sales" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
+                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+                  activeTab === "sales"
+                    ? "bg-brand-dark text-white border-transparent"
+                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
                 }`}
               >
                 Ventas y Facturación
               </button>
               <button
                 onClick={() => setActiveTab("payments")}
-                className={`w-full text-left px-6 py-3 text-sm rounded-md border border-slate-200 transition-colors ${
-                  activeTab === "payments" ? "bg-brand-dark text-white" : "bg-white text-brand-dark hover:bg-gray-100"
+                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
+                  activeTab === "payments"
+                    ? "bg-brand-dark text-white border-transparent"
+                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
                 }`}
               >
                 Monitoreo de Pagos
@@ -198,13 +254,13 @@ function UsersManagement({ users, setUsers }) {
 
   return (
     <div className="bg-white rounded-lg border border-slate-200">
-      <div className="px-6 py-4 border-b border-slate-200">
+      <div className="px-4 md:px-6 py-4 border-b border-slate-200">
         <h2 className="text-lg font-semibold text-brand-dark">Gestión de Usuarios</h2>
         <p className="text-sm text-slate-500 mt-1">Visualiza y gestiona la información de los usuarios registrados</p>
       </div>
 
-      <div className="p-6">
-        <Table>
+      <div className="p-4 md:p-6 overflow-x-auto">
+        <Table className="min-w-[800px]">
           <TableHeader>
             <TableRow>
               <TableHead>ID</TableHead>
@@ -250,16 +306,16 @@ function UsersManagement({ users, setUsers }) {
                   </span>
                 </TableCell>
                 <TableCell>
-                  <Dialog>
+                  <Dialog open={Boolean(editingUser)} onOpenChange={(open) => { if (!open) setEditingUser(null) }}>
                     <DialogTrigger asChild>
                       <Button variant="outline" size="sm" onClick={() => setEditingUser(user)} className="text-xs">
                         Editar
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-2xl">
+                  <DialogContent className="max-w-[95vw] sm:max-w-xl md:max-w-2xl md:p-8">
                       <DialogHeader>
-                        <DialogTitle>Editar Usuario</DialogTitle>
-                        <DialogDescription>
+                        <DialogTitle className="text-3xl md:text-4xl font-semibold text-slate-900">Editar Usuario</DialogTitle>
+                        <DialogDescription className="text-sm md:text-base text-slate-600">
                           Modifica la información del usuario. El ID y email no pueden ser modificados.
                         </DialogDescription>
                       </DialogHeader>
@@ -292,52 +348,55 @@ function UserEditForm({ user, onSave, onCancel }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="id">ID *</Label>
-          <Input id="id" value={formData.id} disabled className="bg-gray-50" />
-        </div>
-        <div>
-          <Label htmlFor="email">Email *</Label>
-          <Input id="email" type="email" value={formData.email} disabled className="bg-gray-50" />
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">ID *</legend>
+          <Input id="id" value={formData.id} disabled className="border-none focus:ring-0 px-0 bg-gray-50" />
+        </fieldset>
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Email *</legend>
+          <Input id="email" type="email" value={formData.email} disabled className="border-none focus:ring-0 px-0 bg-gray-50" />
+        </fieldset>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="nombre">Nombre *</Label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Nombre *</legend>
           <Input
             id="nombre"
+            className="border-none focus:ring-0 px-0"
             value={formData.nombre}
             onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
             required
           />
-        </div>
-        <div>
-          <Label htmlFor="apellidos">Apellidos *</Label>
+        </fieldset>
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Apellidos *</legend>
           <Input
             id="apellidos"
+            className="border-none focus:ring-0 px-0"
             value={formData.apellidos}
             onChange={(e) => setFormData({ ...formData, apellidos: e.target.value })}
             required
           />
-        </div>
+        </fieldset>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="telefono">Teléfono *</Label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Teléfono *</legend>
           <Input
             id="telefono"
+            className="border-none focus:ring-0 px-0"
             value={formData.telefono}
             onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
             required
           />
-        </div>
-        <div>
-          <Label htmlFor="rol">Rol *</Label>
+        </fieldset>
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Rol *</legend>
           <Select value={formData.rol} onValueChange={(value) => setFormData({ ...formData, rol: value })}>
-            <SelectTrigger>
+            <SelectTrigger className="border-none focus:ring-0 px-0">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -346,23 +405,24 @@ function UserEditForm({ user, onSave, onCancel }) {
               <SelectItem value="Cliente">Cliente</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </fieldset>
       </div>
 
-      <div>
-        <Label htmlFor="direccion">Dirección *</Label>
+      <fieldset className="border border-slate-300 rounded-lg p-3">
+        <legend className="text-xs text-slate-600 px-2">Dirección *</legend>
         <Input
           id="direccion"
+          className="border-none focus:ring-0 px-0"
           value={formData.direccion}
           onChange={(e) => setFormData({ ...formData, direccion: e.target.value })}
           required
         />
-      </div>
+      </fieldset>
 
-      <div>
-        <Label htmlFor="estado">Estado de la cuenta *</Label>
+      <fieldset className="border border-slate-300 rounded-lg p-3">
+        <legend className="text-xs text-slate-600 px-2">Estado de la cuenta *</legend>
         <Select value={formData.estado} onValueChange={(value) => setFormData({ ...formData, estado: value })}>
-          <SelectTrigger>
+          <SelectTrigger className="border-none focus:ring-0 px-0">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -371,13 +431,13 @@ function UserEditForm({ user, onSave, onCancel }) {
             <SelectItem value="Suspendido">Suspendido</SelectItem>
           </SelectContent>
         </Select>
-      </div>
+      </fieldset>
 
-      <div className="flex justify-end gap-2 pt-4">
-        <Button type="button" variant="outline" onClick={onCancel}>
+      <div className="flex justify-center gap-4 pt-6">
+        <Button type="button" variant="outline" className="rounded-full px-6 border-brand-dark text-brand-dark" onClick={onCancel}>
           Cancelar
         </Button>
-        <Button type="submit" className="bg-brand-dark hover:bg-brand">
+        <Button type="submit" className="bg-brand-dark hover:bg-brand rounded-full px-6 shadow-sm">
           Guardar cambios
         </Button>
       </div>
@@ -406,33 +466,10 @@ function ProductsManagement({
     setProducts(products.map((p) => (p.id === productId ? { ...p, estado: "Inactivo" } : p)))
   }
 
-  const lowStockProducts = products.filter((p) => p.stock < 10 && p.estado === "Activo")
-
   return (
     <div className="space-y-6">
-      {lowStockProducts.length > 0 && (
-        <Card className="border-yellow-200 bg-yellow-50">
-          <CardHeader>
-            <CardTitle className="text-base text-yellow-800">⚠️ Alerta de Stock Bajo</CardTitle>
-            <CardDescription className="text-yellow-700">
-              {lowStockProducts.length} producto(s) con stock menor a 10 unidades
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {lowStockProducts.map((product) => (
-                <div key={product.id} className="flex justify-between text-sm">
-                  <span className="text-yellow-800">{product.nombre}</span>
-                  <span className="font-medium text-yellow-900">{product.stock} unidades</span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
       <div className="bg-white rounded-lg border border-slate-200">
-        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+        <div className="px-4 md:px-6 py-4 border-b border-slate-200 flex items-center justify-between flex-col md:flex-row gap-4 md:gap-0">
           <div>
             <h2 className="text-lg font-semibold text-brand-dark">Gestión de Productos</h2>
             <p className="text-sm text-slate-500 mt-1">Administra el catálogo de productos de tu tienda</p>
@@ -441,10 +478,10 @@ function ProductsManagement({
             <DialogTrigger asChild>
               <Button className="bg-brand-dark hover:bg-brand">Registrar Nuevo Producto</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="max-w-[95vw] sm:max-w-xl md:max-w-2xl md:p-8">
               <DialogHeader>
-                <DialogTitle>Registrar Nuevo Producto</DialogTitle>
-                <DialogDescription>Completa la información del nuevo producto para el catálogo</DialogDescription>
+                <DialogTitle className="text-3xl md:text-4xl font-semibold text-slate-900">Registrar Nuevo Producto</DialogTitle>
+                <DialogDescription className="text-sm md:text-base text-slate-600">Completa la información del nuevo producto para el catálogo</DialogDescription>
               </DialogHeader>
               <ProductForm
                 product={{
@@ -466,8 +503,8 @@ function ProductsManagement({
           </Dialog>
         </div>
 
-        <div className="p-6">
-          <Table>
+        <div className="p-4 md:p-6 overflow-x-auto">
+          <Table className="min-w-[900px]">
             <TableHeader>
               <TableRow>
                 <TableHead>ID</TableHead>
@@ -502,7 +539,7 @@ function ProductsManagement({
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2">
-                      <Dialog>
+                      <Dialog open={Boolean(editingProduct)} onOpenChange={(open) => { if (!open) setEditingProduct(null) }}>
                         <DialogTrigger asChild>
                           <Button
                             variant="outline"
@@ -513,7 +550,7 @@ function ProductsManagement({
                             Editar
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-2xl">
+                        <DialogContent className="max-w-[95vw] sm:max-w-2xl">
                           <DialogHeader>
                             <DialogTitle>Editar Producto</DialogTitle>
                             <DialogDescription>Modifica la información del producto</DialogDescription>
@@ -564,89 +601,96 @@ function ProductForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="nombre">Nombre del producto *</Label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Nombre del Producto *</legend>
           <Input
             id="nombre"
+            className="border-none focus:ring-0 px-0"
             value={formData.nombre}
             onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
             required
           />
-        </div>
-        <div>
-          <Label htmlFor="categoria">Categoría *</Label>
+        </fieldset>
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Categoría *</legend>
           <Input
             id="categoria"
+            className="border-none focus:ring-0 px-0"
             value={formData.categoria}
             onChange={(e) => setFormData({ ...formData, categoria: e.target.value })}
             required
           />
-        </div>
+        </fieldset>
       </div>
 
-      <div>
-        <Label htmlFor="descripcion">Descripción *</Label>
+      <fieldset className="border border-slate-300 rounded-lg p-3">
+        <legend className="text-xs text-slate-600 px-2">Descripcion *</legend>
         <Textarea
           id="descripcion"
+          className="border-none focus:ring-0 px-0"
           value={formData.descripcion}
           onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
           required
           rows={3}
         />
-      </div>
+      </fieldset>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="precio">Precio (₡) *</Label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Precio *</legend>
           <Input
             id="precio"
             type="number"
+            className="border-none focus:ring-0 px-0"
             value={formData.precio}
             onChange={(e) => setFormData({ ...formData, precio: Number(e.target.value) })}
             required
             min="0"
           />
-        </div>
-        <div>
-          <Label htmlFor="stock">Stock disponible *</Label>
+        </fieldset>
+        <fieldset className="border border-slate-300 rounded-lg p-3">
+          <legend className="text-xs text-slate-600 px-2">Stock disponible *</legend>
           <Input
             id="stock"
             type="number"
+            className="border-none focus:ring-0 px-0"
             value={formData.stock}
             onChange={(e) => setFormData({ ...formData, stock: Number(e.target.value) })}
             required
             min="0"
           />
-        </div>
+        </fieldset>
       </div>
 
-      <div>
-        <Label htmlFor="proveedor">Proveedor *</Label>
+      <fieldset className="border border-slate-300 rounded-lg p-3">
+        <legend className="text-xs text-slate-600 px-2">Proveedor *</legend>
         <Input
           id="proveedor"
+          className="border-none focus:ring-0 px-0"
           value={formData.proveedor}
           onChange={(e) => setFormData({ ...formData, proveedor: e.target.value })}
           required
         />
-      </div>
+      </fieldset>
 
-      <div>
-        <Label htmlFor="imagen">URL de la imagen</Label>
+      <fieldset className="border border-slate-300 rounded-lg p-3">
+        <legend className="text-xs text-slate-600 px-2">URL de la imagen</legend>
         <Input
           id="imagen"
           type="url"
+          className="border-none focus:ring-0 px-0"
           value={formData.imagen}
           onChange={(e) => setFormData({ ...formData, imagen: e.target.value })}
           placeholder="https://ejemplo.com/imagen.jpg"
         />
-      </div>
+      </fieldset>
 
-      <div className="flex justify-end gap-2 pt-4">
-        <Button type="button" variant="outline" onClick={onCancel}>
+      <div className="flex justify-center gap-4 pt-6">
+        <Button type="button" variant="outline" className="rounded-full px-6 border-brand-dark text-brand-dark" onClick={onCancel}>
           Cancelar
         </Button>
-        <Button type="submit" className="bg-brand-dark hover:bg-brand">
+        <Button type="submit" className="bg-brand-dark hover:bg-brand rounded-full px-6 shadow-sm">
           {isNew ? "Registrar Producto" : "Guardar cambios"}
         </Button>
       </div>
@@ -663,10 +707,11 @@ function SalesManagement({ sales }) {
 
   const totalMonth = sales.reduce((sum, sale) => sum + sale.total, 0)
   const productsMonth = sales.reduce((sum, sale) => sum + sale.productos, 0)
+  const [invoiceSale, setInvoiceSale] = useState(null)
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Reporte Diario</CardTitle>
@@ -711,13 +756,13 @@ function SalesManagement({ sales }) {
       </div>
 
       <div className="bg-white rounded-lg border border-slate-200">
-        <div className="px-6 py-4 border-b border-slate-200">
+        <div className="px-4 md:px-6 py-4 border-b border-slate-200">
           <h2 className="text-lg font-semibold text-brand-dark">Historial de Ventas</h2>
           <p className="text-sm text-slate-500 mt-1">Visualiza todas las ventas y facturas generadas</p>
         </div>
 
-        <div className="p-6">
-          <Table>
+        <div className="p-4 md:p-6 overflow-x-auto">
+          <Table className="min-w-[900px]">
             <TableHeader>
               <TableRow>
                 <TableHead>ID Venta</TableHead>
@@ -753,9 +798,68 @@ function SalesManagement({ sales }) {
                     </span>
                   </TableCell>
                   <TableCell>
-                    <Button variant="outline" size="sm" className="text-xs bg-transparent">
-                      Ver factura
-                    </Button>
+                    <Dialog open={Boolean(invoiceSale)} onOpenChange={(open) => { if (!open) setInvoiceSale(null) }}>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-xs bg-transparent"
+                          onClick={() => setInvoiceSale(sale)}
+                        >
+                          Ver factura
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-[95vw] sm:max-w-xl md:max-w-2xl md:p-8">
+                        <DialogHeader>
+                          <DialogTitle className="text-3xl md:text-4xl font-semibold text-slate-900">Factura #{invoiceSale?.id}</DialogTitle>
+                          <DialogDescription className="text-sm md:text-base text-slate-600">Detalle de la venta y facturación</DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">ID Venta</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={invoiceSale?.id || ''} disabled />
+                            </fieldset>
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Fecha</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={invoiceSale ? new Date(invoiceSale.fecha).toLocaleDateString('es-CR') : ''} disabled />
+                            </fieldset>
+                          </div>
+                          <fieldset className="border border-slate-300 rounded-lg p-3">
+                            <legend className="text-xs text-slate-600 px-2">Cliente</legend>
+                            <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={invoiceSale?.cliente || ''} disabled />
+                          </fieldset>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Productos</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={invoiceSale?.productos ?? ''} disabled />
+                            </fieldset>
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Total</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={invoiceSale ? `₡${invoiceSale.total.toLocaleString()}` : ''} disabled />
+                            </fieldset>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Método de Pago</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={invoiceSale?.metodoPago || ''} disabled />
+                            </fieldset>
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Estado del Pago</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={invoiceSale?.estadoPago || ''} disabled />
+                            </fieldset>
+                          </div>
+                          <div className="flex justify-center gap-4 pt-6">
+                            <Button type="button" variant="outline" className="rounded-full px-6 border-brand-dark text-brand-dark" onClick={() => setInvoiceSale(null)}>
+                              Cerrar
+                            </Button>
+                            <Button type="button" className="bg-brand-dark hover:bg-brand rounded-full px-6 shadow-sm">
+                              Descargar
+                            </Button>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </TableCell>
                 </TableRow>
               ))}
@@ -783,10 +887,11 @@ function PaymentsMonitoring({ sales }) {
     },
     {},
   )
+  const [detailSale, setDetailSale] = useState(null)
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Pagos por Método</CardTitle>
@@ -824,13 +929,13 @@ function PaymentsMonitoring({ sales }) {
       </div>
 
       <div className="bg-white rounded-lg border border-slate-200">
-        <div className="px-6 py-4 border-b border-slate-200">
+        <div className="px-4 md:px-6 py-4 border-b border-slate-200">
           <h2 className="text-lg font-semibold text-brand-dark">Monitoreo de Pagos</h2>
           <p className="text-sm text-slate-500 mt-1">Estado detallado de todos los pagos registrados</p>
         </div>
 
-        <div className="p-6">
-          <Table>
+        <div className="p-4 md:p-6 overflow-x-auto">
+          <Table className="min-w-[900px]">
             <TableHeader>
               <TableRow>
                 <TableHead>ID Venta</TableHead>
@@ -868,9 +973,64 @@ function PaymentsMonitoring({ sales }) {
                     </span>
                   </TableCell>
                   <TableCell>
-                    <Button variant="outline" size="sm" className="text-xs bg-transparent">
-                      Ver detalles
-                    </Button>
+                    <Dialog open={Boolean(detailSale)} onOpenChange={(open) => { if (!open) setDetailSale(null) }}>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-xs bg-transparent"
+                          onClick={() => setDetailSale(sale)}
+                        >
+                          Ver detalles
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-[95vw] sm:max-w-xl md:max-w-2xl md:p-8">
+                        <DialogHeader>
+                          <DialogTitle className="text-3xl md:text-4xl font-semibold text-slate-900">Detalles de Pago</DialogTitle>
+                          <DialogDescription className="text-sm md:text-base text-slate-600">Información detallada de la venta y el pago</DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">ID Venta</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={detailSale?.id || ''} disabled />
+                            </fieldset>
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Fecha</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={detailSale ? new Date(detailSale.fecha).toLocaleDateString('es-CR') : ''} disabled />
+                            </fieldset>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Cliente</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={detailSale?.cliente || ''} disabled />
+                            </fieldset>
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Monto</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={detailSale ? `₡${detailSale.total.toLocaleString()}` : ''} disabled />
+                            </fieldset>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Método de Pago</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={detailSale?.metodoPago || ''} disabled />
+                            </fieldset>
+                            <fieldset className="border border-slate-300 rounded-lg p-3">
+                              <legend className="text-xs text-slate-600 px-2">Estado del Pago</legend>
+                              <Input className="border-none focus:ring-0 px-0 bg-gray-50" value={detailSale?.estadoPago || ''} disabled />
+                            </fieldset>
+                          </div>
+                          <div className="flex justify-center gap-4 pt-6">
+                            <Button type="button" variant="outline" className="rounded-full px-6 border-brand-dark text-brand-dark" onClick={() => setDetailSale(null)}>
+                              Cerrar
+                            </Button>
+                            <Button type="button" className="bg-brand-dark hover:bg-brand rounded-full px-6 shadow-sm">
+                              Aceptar
+                            </Button>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </TableCell>
                 </TableRow>
               ))}
