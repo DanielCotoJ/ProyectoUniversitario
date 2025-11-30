@@ -19,6 +19,13 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
+import AdminHeader from "./components/AdminHeader.jsx"
+import AdminSidebar from "./components/AdminSidebar.jsx"
+import UsersManagementView from "./components/UsersManagement.jsx"
+import ProductsManagementView from "./components/ProductsManagement.jsx"
+import SalesManagementView from "./components/SalesManagement.jsx"
+import PaymentsMonitoringView from "./components/PaymentsMonitoring.jsx"
+
 
 
 export default function AdminDashboard() {
@@ -95,23 +102,7 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-          <a href="/admin" className="inline-flex items-center">
-            <img
-              src="/images/bellas-boutique-logo-complete.png"
-              alt="Bellas Boutique"
-              className="h-7 md:h-8 w-auto"
-            />
-          </a>
-          <div className="flex items-center gap-6">
-            <span className="text-sm text-slate-500">Administrador</span>
-            <Button variant="outline" size="sm" className="text-sm bg-transparent">
-              Cerrar sesión
-            </Button>
-          </div>
-        </div>
-      </header>
+      <AdminHeader />
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8">
         <div className="mb-12 text-center">
@@ -167,76 +158,14 @@ export default function AdminDashboard() {
 
         <div className="flex flex-col md:flex-row gap-6 md:gap-8">
           {/* Sidebar */}
-          <aside className="hidden md:block md:w-64 md:flex-shrink-0">
-            <nav className="space-y-3">
-              <button
-                onClick={() => setActiveTab("users")}
-                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
-                  activeTab === "users"
-                    ? "bg-brand-dark text-white border-transparent"
-                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
-                }`}
-              >
-                Gestión de Usuarios
-              </button>
-              <button
-                onClick={() => setActiveTab("products")}
-                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
-                  activeTab === "products"
-                    ? "bg-brand-dark text-white border-transparent"
-                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
-                }`}
-              >
-                Gestión de Productos
-              </button>
-              <button
-                onClick={() => setActiveTab("sales")}
-                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
-                  activeTab === "sales"
-                    ? "bg-brand-dark text-white border-transparent"
-                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
-                }`}
-              >
-                Ventas y Facturación
-              </button>
-              <button
-                onClick={() => setActiveTab("payments")}
-                className={`w-full text-center px-6 py-3 text-sm rounded-none border transition-colors shadow-sm ${
-                  activeTab === "payments"
-                    ? "bg-brand-dark text-white border-transparent"
-                    : "bg-white text-brand-dark border-slate-200 hover:bg-gray-50"
-                }`}
-              >
-                Monitoreo de Pagos
-              </button>
-            </nav>
-
-            {/* Stats Card */}
-            <div className="mt-6 bg-white rounded-lg p-6 border border-slate-200">
-              <h3 className="text-sm font-medium text-brand-dark mb-4">Resumen</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-slate-500">Usuarios</span>
-                  <span className="font-medium text-brand-dark">{users.length}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-slate-500">Productos</span>
-                  <span className="font-medium text-brand-dark">{products.length}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-slate-500">Ventas hoy</span>
-                  <span className="font-medium text-brand-dark">{sales.length}</span>
-                </div>
-              </div>
-            </div>
-          </aside>
+          <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} users={users} products={products} sales={sales} />
 
           {/* Main Content */}
           <main className="flex-1">
-            {activeTab === "users" && <UsersManagement users={users} setUsers={setUsers} />}
-            {activeTab === "products" && <ProductsManagement products={products} setProducts={setProducts} />}
-            {activeTab === "sales" && <SalesManagement sales={sales} />}
-            {activeTab === "payments" && <PaymentsMonitoring sales={sales} />}
+            {activeTab === "users" && <UsersManagementView users={users} setUsers={setUsers} />}
+            {activeTab === "products" && <ProductsManagementView products={products} setProducts={setProducts} />}
+            {activeTab === "sales" && <SalesManagementView sales={sales} />}
+            {activeTab === "payments" && <PaymentsMonitoringView sales={sales} />}
           </main>
         </div>
       </div>
