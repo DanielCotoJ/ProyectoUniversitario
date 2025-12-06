@@ -1,13 +1,24 @@
 "use client"
 
-import React from "react"
-
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   Dialog,
   DialogContent,
@@ -15,89 +26,160 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-import AdminHeader from "./components/AdminHeader.jsx"
-import AdminSidebar from "./components/AdminSidebar.jsx"
-import UsersManagementView from "./components/UsersManagement.jsx"
-import ProductsManagementView from "./components/ProductsManagement.jsx"
-import SalesManagementView from "./components/SalesManagement.jsx"
-import PaymentsMonitoringView from "./components/PaymentsMonitoring.jsx"
+import salesService from "@/modules/admin/services/SalesService";
+import productService from "@/modules/store/services/productService";
+import { listUsersRaw } from "@/modules/auth/services/authService";
 
+import AdminHeader from "./components/AdminHeader.jsx";
+import AdminSidebar from "./components/AdminSidebar.jsx";
+import UsersManagementView from "./components/UsersManagement.jsx";
+import ProductsManagementView from "./components/ProductsManagement.jsx";
+import SalesManagementView from "./components/SalesManagement.jsx";
+import PaymentsMonitoringView from "./components/PaymentsMonitoring.jsx";
 
+// CLIENTE ➜ ADMIN (inglés ➜ español)
+function mapClientToAdminProducts(clientProducts) {
+  return clientProducts.map((p) => ({
+    id: p.id,
+    nombre: p.name,
+    descripcion: p.description,
+    precio: p.price,
+    stock: p.stock,
+    categoria: p.category,
+    proveedor: p.provider,
+    imagen: p.image,
+    estado: "Activo",
+  }));
+}
+
+// Por si no hay nada en storage todavía
+const initialAdminProducts = [
+  {
+    id: "P001",
+    nombre: "Producto A",
+    descripcion: "Descripción del producto A",
+    precio: 25000,
+    stock: 50,
+    categoria: "Electrónica",
+    proveedor: "Proveedor 1",
+    imagen: "",
+    estado: "Activo",
+  },
+  {
+    id: "P002",
+    nombre: "Producto B",
+    descripcion: "Descripción del producto B",
+    precio: 15000,
+    stock: 5,
+    categoria: "Ropa",
+    proveedor: "Proveedor 2",
+    imagen: "",
+    estado: "Activo",
+  },
+];
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState("users")
-  const [users, setUsers] = useState([
-    {
-      id: "001",
-      nombre: "Juan",
-      apellidos: "Pérez García",
-      email: "juan@example.com",
-      telefono: "8888-8888",
-      direccion: "San José, Costa Rica",
-      rol: "Cliente",
-      estado: "Activo",
-    },
-    {
-      id: "002",
-      nombre: "María",
-      apellidos: "González López",
-      email: "maria@example.com",
-      telefono: "7777-7777",
-      direccion: "Heredia, Costa Rica",
-      rol: "Vendedor",
-      estado: "Activo",
-    },
-  ])
+  const [activeTab, setActiveTab] = useState("users");
 
-  const [products, setProducts] = useState([
-    {
-      id: "P001",
-      nombre: "Producto A",
-      descripcion: "Descripción del producto A",
-      precio: 25000,
-      stock: 50,
-      categoria: "Electrónica",
-      proveedor: "Proveedor 1",
-      imagen: "",
-      estado: "Activo",
-    },
-    {
-      id: "P002",
-      nombre: "Producto B",
-      descripcion: "Descripción del producto B",
-      precio: 15000,
-      stock: 5,
-      categoria: "Ropa",
-      proveedor: "Proveedor 2",
-      imagen: "",
-      estado: "Activo",
-    },
-  ])
+  const [users, setUsers] = useState([]);
 
-  const [sales] = useState([
-    {
-      id: "V001",
-      fecha: "2025-01-10",
-      cliente: "Juan Pérez",
-      productos: 3,
-      total: 75000,
-      metodoPago: "Tarjeta",
-      estadoPago: "Exitoso",
-    },
-    {
-      id: "V002",
-      fecha: "2025-01-11",
-      cliente: "María González",
-      productos: 1,
-      total: 25000,
-      metodoPago: "SINPE",
-      estadoPago: "Pendiente",
-    },
-  ])
+  const [products, setProducts] = useState(initialAdminProducts);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+
+  useEffect(() => {
+    try {
+      const rawUsers = listUsersRaw(); // viene de authService
+
+      const adminUsers = rawUsers.map((u) => ({
+        id: u.idUser, // mapeamos idUser -> id para el admin
+        nombre: u.nombre,
+        apellidos: u.apellidos,
+        email: u.email,
+        telefono: u.telefono,
+        direccion: u.direccion,
+        rol: u.rol,
+        estado: u.estado || "Activo", // por si alguno no tiene estado aún
+      }));
+
+      setUsers(adminUsers);
+    } catch (error) {
+      console.error("Error cargando usuarios para admin:", error);
+      setUsers([]); // fallback
+    }
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadProductsForAdmin = async () => {
+      try {
+        // lee el catálogo que ve el cliente (localStorage o base)
+        const clientProducts = await productService.list();
+
+        if (cancelled) return;
+
+        if (clientProducts && clientProducts.length > 0) {
+          setProducts(mapClientToAdminProducts(clientProducts));
+        } else {
+          setProducts(initialAdminProducts);
+        }
+      } catch (e) {
+        console.error("Error cargando productos para admin:", e);
+        if (!cancelled) setProducts(initialAdminProducts);
+      } finally {
+        if (!cancelled) setLoadingProducts(false);
+      }
+    };
+
+    loadProductsForAdmin();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const [sales, setSales] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadSales = async () => {
+      try {
+        const data = await salesService.list();
+        if (!cancelled) setSales(data);
+      } catch (e) {
+        console.error("Error cargando ventas:", e);
+        if (!cancelled) setSales([]);
+      }
+    };
+
+    loadSales();
+
+    // escuchar cambios de ventas (cuando Checkout guarda una nueva)
+    function onSalesChanged(e) {
+      if (cancelled) return;
+      if (e && e.detail && Array.isArray(e.detail.sales)) {
+        setSales(e.detail.sales);
+      } else {
+        loadSales();
+      }
+    }
+
+    window.addEventListener("sales:changed", onSalesChanged);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("sales:changed", onSalesChanged);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -106,10 +188,12 @@ export default function AdminDashboard() {
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8">
         <div className="mb-12 text-center">
-          <h1 className="text-3xl md:text-5xl font-light text-brand-dark tracking-tight mb-4">Panel administrativo</h1>
+          <h1 className="text-3xl md:text-5xl font-light text-brand-dark tracking-tight mb-4">
+            Panel administrativo
+          </h1>
           <h2 className="text-base md:text-lg text-slate-500 font-light leading-relaxed max-w-2xl mx-auto">
-            Gestiona usuarios, productos, ventas y pagos desde un solo lugar. Monitorea el rendimiento de tu negocio en
-            tiempo real.
+            Gestiona usuarios, productos, ventas y pagos desde un solo lugar.
+            Monitorea el rendimiento de tu negocio en tiempo real.
           </h2>
         </div>
         {/* </CHANGE> */}
@@ -158,19 +242,37 @@ export default function AdminDashboard() {
 
         <div className="flex flex-col md:flex-row gap-6 md:gap-8">
           {/* Sidebar */}
-          <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} users={users} products={products} sales={sales} />
+          <AdminSidebar
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            users={users}
+            products={products}
+            sales={sales}
+          />
 
           {/* Main Content */}
           <main className="flex-1">
-            {activeTab === "users" && <UsersManagementView users={users} setUsers={setUsers} />}
-            {activeTab === "products" && <ProductsManagementView products={products} setProducts={setProducts} />}
+            {activeTab === "users" && (
+              <UsersManagementView users={users} setUsers={setUsers} />
+            )}
+
+            {activeTab === "products" && !loadingProducts && (
+              <ProductsManagementView
+                products={products}
+                setProducts={setProducts}
+              />
+            )}
+
             {activeTab === "sales" && <SalesManagementView sales={sales} />}
-            {activeTab === "payments" && <PaymentsMonitoringView sales={sales} />}
+
+            {activeTab === "payments" && (
+              <PaymentsMonitoringView sales={sales} />
+            )}
           </main>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function UsersManagement({ users, setUsers }) {
