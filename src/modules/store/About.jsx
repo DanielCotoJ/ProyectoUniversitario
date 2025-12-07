@@ -11,7 +11,7 @@ export default function AboutPage() {
       role: "Líder de Equipo y Gestión de Proyecto",
       description:
         "Coordina el trabajo del equipo, la organización de tareas y la entrega del proyecto.",
-      image: "/images/team/integrante-1.jpg",
+      image: "/images/team/Team-3.jpg",
     },
     {
       id: 2,
@@ -20,16 +20,16 @@ export default function AboutPage() {
       role: "Diseño UI/UX",
       description:
         "Responsable de la maqueta en Figma, definición de estilos y experiencia de usuario.",
-      image: "/images/team/integrante-2.jpg",
+      image: "/images/team/Team-2.jpg",
     },
     {
       id: 3,
-      name: "Daniel Cordero Coto",
-      career: "Estudiante de Ingeniería Informática",
+      name: "Daniel Andrés Coto Jiménez",
+      career: "Estudiante de Ingeniería En Sistemas de la Información",
       role: "Desarrollo frontend",
       description:
         "Implementa las vistas en React y apoya en las pruebas y ajustes finales.",
-      image: "/images/team/integrante-3.jpg",
+      image: "/images/team/Team-1.jpg",
     },
   ];
 
