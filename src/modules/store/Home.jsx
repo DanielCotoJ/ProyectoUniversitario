@@ -177,7 +177,7 @@ export default function Home() {
             onClick={() => navigate("/products")}
             className="text-sm text-brand-dark underline underline-offset-4 hover:text-brand transition"
           >
-            Ir a la tienda completa
+            Ir a la tienda
           </button>
         </div>
 
@@ -215,7 +215,7 @@ export default function Home() {
                   onClick={() => handleAddToBag(p)}
                   className="mt-2 w-full rounded-full py-2 text-xs"
                 >
-                  Añadir a bolsa
+                  Añadir al carrito
                 </Button>
               </div>
             </article>
@@ -224,7 +224,7 @@ export default function Home() {
 
         {addedToBag && (
           <p className="mt-3 text-xs text-emerald-600">
-            Producto añadido a tu bolsa ✓
+            Producto añadido a tu carrito ✓
           </p>
         )}
       </section>
